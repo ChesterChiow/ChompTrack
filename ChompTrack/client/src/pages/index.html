@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="overlay">
+            <div class="desc">
+                <img src="../static/img/ChomptrackLogo.png" alt="logo img">
+                <p>Your one-stop meal planner website.</p>
+            </div>
+            <h1>Meal Plans <br>You'll Enjoy!</h1>
+            <div class="btns">
+                <a href="/login" class="button">Existing User</a>
+                <a href="/register" class="button">New User</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    div {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: url('../static/img/bg.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .container {
+        text-align: center;
+        position: relative;
+    }
+
+    .overlay {
+            color: #3F6248;
+        }
+
+        .desc {
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .desc img {
+            width: 100px;
+        }
+
+        .desc p {
+            font-size: 1.2rem;
+            padding-bottom: 0;
+            margin-bottom: 0;
+            padding-left: 50px;
+        }
+
+        .overlay h1 {
+            font-size: 7rem;
+            font-weight:900;
+            line-height: 100%;
+            padding-top: 10px;
+            margin: 0;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+    .btns {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        }
+    
+        .button {
+            background-color: #3F6248;
+            color: white;
+            border: none;
+            width: 400px;
+            padding: 15px 30px;
+            margin: 20px;
+            font-size: 1.5rem;
+            font-weight:600;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow:  0px 2px 10px black;
+        }
+
+    .button:hover {
+        background-color: #234127;
+    }
+</style>

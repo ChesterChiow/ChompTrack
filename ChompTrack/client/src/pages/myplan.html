@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChompTrack</title>
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="../static/css/myPlan.css">
+</head>
+<body>
+    <!-- Placeholder for the navbar -->
+    <div id="navbar-container"></div>
+    <main class="container">
+        <div class="grid">
+            <div>
+                <h1>Hello,<br><span id="username">Jasmine</span>!</h1>
+                <p id="date">Date: Mon, 11 August 2024</p>
+                <div class="nutrients-box">
+                    <h2>Your Suggested Estimated Daily Nutrients Intake</h2>
+                    <ul>
+                        <li id="Calories">N/A</li>
+                        <li id="Carbohydrates">N/A</li>
+                        <li id="Protein">N/A</li>
+                        <li id="Fats">N/A</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h2>Daily Progress</h2>
+                <div class="progress-circles">
+                    <div class="progress-circle">
+                        <div class="circle" style="--color: #78ABA8;" id="calories-circle">0%</div>
+                        <p>Calories</p>
+                    </div>
+                    <div class="progress-circle">
+                        <div class="circle" style="--color: #C8CFA0;" id="fats-circle">0%</div>
+                        <p>Fats</p>
+                    </div>
+                    <div class="progress-circle">
+                        <div class="circle" style="--color: #EF9C66;" id="protein-circle">0%</div>
+                        <p>Protein</p>
+                    </div>
+                    <div class="progress-circle">
+                        <div class="circle" style="--color: #FCFC94;" id="carbohydrates-circle">0%</div>
+                        <p>Carbohydrates</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <h2>Meals For The Day!</h2>
+        <div class="date-selector" id="date-selector">
+            <button id="prev-week">&lt;</button>
+            <div id="date-buttons" class="date-buttons">
+                <!-- date buttons will be dynamically added here -->
+            </div>
+            <button id="next-week">&gt;</button>
+        </div>
+        <div id="meal-grid" class="meal-grid">
+            <!-- Meal cards will be dynamically added here -->
+        </div>
+    </main>
+    <script src="../static/js/loadNavbar.js"></script>
+    <script src="../../static/js/myPlan.js" charset="utf-8"></script>
+</body>
+</html>

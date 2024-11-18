@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="../../static/css/register.css">
+</head>
+<body>
+    <div class="container">
+        <a href="/">
+            <img src="../../static/img/ChomptrackLogo.png" alt="logo img">
+        </a>
+        <div class="register-container">
+
+            <h2 class="register_name">Register</h2>
+    
+            <form class="input-group" onsubmit="return register(event);">
+                <div class="username_row">
+                    <p class="username_name">Username</p>
+                    <input type="text" class="register-input" id="username" title="username" required/>
+                </div>
+
+                <div class="email_row">
+                    <p class="email_name">Email</p>
+                    <input type="text" class="register-input" id="email" title="email" required/>
+                </div>
+    
+                <div class="pwd_row">
+                    <p class="pw_name">Password</p>
+                    <input type="password" class="register-input" id="password" title="password"/>
+                </div>
+
+                <div class="cfmpwd_row">
+                    <p class="cfmpw_name">Confirm Password</p>
+                    <input type="password" class="register-input" id="cfmpassword" title="cfmpassword"/>
+                </div>
+    
+                <button type="submit" class="register_button">Register</button>
+            </form>
+    
+        </div>
+    </div>
+
+    <script src="../../static/js/register.js" charset="utf-8"></script>
+</body>
+</html>

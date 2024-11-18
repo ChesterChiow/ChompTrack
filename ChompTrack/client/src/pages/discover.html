@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChompTrack</title>
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="../static/css/discover.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <!-- Placeholder for the navbar -->
+    <div id="navbar-container"></div>
+
+    <main class="container">
+        <h1>Discover</h1>
+        <hr>
+        <div class="content-wrapper">
+            <aside class="filter-section">
+                <div class="filter-container">
+                    <h2>Filter</h2>
+                    <div class="filter-group">
+                        <h3>Cost</h3>
+                        <div class="input-group cost">
+                            <label for="costMin">Min $</label>
+                            <input type="number" id="costMin" name="costMin" min="0" max="50" value="0">
+                            <label for="costMax">Max $</label>
+                            <input type="number" id="costMax" name="costMax" min="0" max="50" value="100">
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <h3>Estimated Preparation Time</h3>
+                        <div class="input-group time">
+                            <label for="timeMin">Min (minutes)</label>
+                            <input type="number" id="timeMin" name="timeMin" min="0" max="120" value="0">
+                            <label for="timeMax">Max (minutes)</label>
+                            <input type="number"id="timeMax" name="timeMax" min="0" max="120" value="120">
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <h3>Cuisine</h3>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="cuisine" value="American">American</label>
+                            <label><input type="checkbox" name="cuisine" value="Mediterranean">Mediterranean</label>
+                            <label><input type="checkbox" name="cuisine" value="Southern">Southern</label>
+                            <label><input type="checkbox" name="cuisine" value="Italian">Italian</label>
+                            <label><input type="checkbox" name="cuisine" value="Indian">Indian</label>
+                            <label><input type="checkbox" name="cuisine" value="Mexican">Mexican</label>
+                            <label><input type="checkbox" name="cuisine" value="Japanese">Japanese</label>
+                            <label><input type="checkbox" name="cuisine" value="Korean">Korean</label>
+                            <label><input type="checkbox" name="cuisine" value="Chinese">Chinese</label>
+                            <label><input type="checkbox" name="cuisine" value="Other">Other</label>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="meal-content">
+                <div class="meal-categories">
+                    <button class="category-btn" data-category="Breakfast">Breakfast</button>
+                    <button class="category-btn" data-category="Lunch">Lunch</button>
+                    <button class="category-btn" data-category="Dinner">Dinner</button>
+                    <button class="category-btn" data-category="Snacks">Snacks</button>
+                </div>
+                <div id="meal-grid" class="meal-grid">
+                    <!-- Meal cards will be dynamically added here -->
+                </div>
+
+                <button id="load-more" class="load-more-btn">Load More</button>
+                <div id="loading-spinner" class="spinner" style="display: none;">
+                    Loading..
+                    <div class="loader"></div>
+                </div>                
+            </section>
+        </div>
+                            
+    </main>
+    <script src="../static/js/loadNavbar.js"></script>
+    <script src="../static/js/discover.js" cahrset="utf-8"></script>
+</body>
+</html>

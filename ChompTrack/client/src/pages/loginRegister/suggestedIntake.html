@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Suggested Daily Estimated Nutrition Intake</title>
+    <link rel="stylesheet" href="../../static/css/suggestedIntake.css">
+</head>
+<body>
+    <div class="container" onload="fetchData()">
+        <a href="/">
+            <img src="../../static/img/ChomptrackLogo.png" alt="logo img">
+        </a>
+        <div class="nutrition-container">
+            <h2>Your Suggested Daily Estimated Nutrition Intake</h2>
+    
+            <div class="intake-group">
+                <div class="nutrition-box">
+                    <div class="Calories row">
+                        <p class="label">Calories:</p>
+                        <p id="Calories">N/A</p>
+                    </div>
+                    <div class="Carbohydrates row">
+                        <p class="label">Carbohydrates:</p>
+                        <p id="Carbohydrates">N/A</p>
+                    </div>
+                    <div class="Protein row">
+                        <p class="label">Protein:</p>
+                        <p id="Protein">N/A</p>
+                    </div>
+                    <div class="Fats row">
+                        <p class="label">Fats:</p>
+                        <p id="Fats">N/A</p>
+                    </div>
+                </div>
+
+                <a href="my-plan" class="start_button" title="Click to start">Let's Start!</a>
+            </div>
+
+        </div>
+    </div>
+
+<script src="../../static/js/suggestedIntake.js" charset="utf-8"></script>
+</body>
+</html>

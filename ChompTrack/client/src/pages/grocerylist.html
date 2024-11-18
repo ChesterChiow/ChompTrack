@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ChompTrack</title>
+        <link rel="stylesheet" href="../static/css/navbar.css">
+        <link rel="stylesheet" href="../static/css/groceryList.css">
+    </head>
+    <body>
+        <!-- Placeholder for the navbar -->
+    <div id="navbar-container"></div>
+        <main class="container">
+            <h1>Grocery List</h1>
+            <hr>
+
+            <div class="Table">
+                <!-- Week Toggle Buttons -->
+                <div class="week-toggle">
+                    <button id="previousWeek"><</button>
+                    <span id="dateRange"></span>
+                    <button id="nextWeek">></button>
+                </div>
+
+                <table id="groceryTable">
+                    <thead>
+                        <tr>
+                            <th class="table-item">Item</th>
+                            <th >Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Items will be dynamically inserted here -->
+                    </tbody>
+                </table>
+                <h3>Total Cost: $<span id="totalCost">0.00</span></h3>
+            </div>
+        </main>
+        <script src="../static/js/loadNavbar.js"></script>
+        <script src="../static/js/groceryList.js" charset="utf-8"></script>
+    </body>
+</html>
+

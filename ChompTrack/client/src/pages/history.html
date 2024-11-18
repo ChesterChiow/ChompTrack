@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChompTrack</title>
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="../static/css/history.css">
+</head>
+<body>
+    <!-- Placeholder for the navbar -->
+    <div id="navbar-container"></div>
+    <main class="container">
+        <h1>History</h1>
+        <hr>
+        <div class="content-wrapper">
+            <aside class="filter-section">
+                <div class="filter-container">
+                    <h2>Search</h2>
+                    <div class="filter-group">
+                        <div class="search-container">
+                            <input type="text" id="search-Input" placeholder="Search for meals..." />
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <div class="search-container">
+                            <label for="date-Input">Select Date:</label>
+                            <input type="date" id="date-Input" />
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <section class="meal-content">
+                <div id="meal-grid" class="meal-grid">
+                    <!-- Meal cards will be dynamically added here -->
+                </div>
+            </section>
+        </div>                          
+    </main>
+    <script src="../static/js/loadNavbar.js"></script>
+    <script src="../static/js/history.js"></script>
+</body>
+</html>

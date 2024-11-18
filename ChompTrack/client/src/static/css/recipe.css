@@ -1,0 +1,305 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+.navbar {
+    background-color: #3F6248;
+    color: white;
+    padding: 0.5rem;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+.logo img {
+    width: 60px;
+    height: 40px;
+    margin-right: 10px;
+}
+.nav-links {
+    display: flex;
+    gap: 6rem;
+}
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+.nav-links a:hover {
+    text-decoration: underline;
+}
+.user-icon img {
+    width: 40px;
+    height: 40px;
+}
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.logout-btn {
+    background-color: #3F6248;
+    color: white;
+    border: none;
+    padding: 0rem 0rem 0rem 0rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+.logout-btn:hover {
+    text-decoration: underline;
+}
+
+        main {
+            padding: 2rem 0;
+        }
+        h1 {
+            margin-top: 2rem;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 1rem 0;
+
+        }
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .recipe-image {
+            width: 100%;
+            border-radius: 0.5rem;
+            margin-bottom: 0rem;
+        }
+        .recipe-info {
+            background-color: rgb(212, 225, 211);
+            padding-top: 0.1rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-bottom: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
+        }
+        
+        .add-to-meal-plan {
+            display: inline-block;
+            margin-top: 1.5rem;
+            background-color: #3F6248;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 9999px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width:100%;
+            box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
+        }
+        .add-to-meal-plan:hover {
+            background-color: #4A7657;
+        }
+
+        
+
+        .ingredients, .nutrition {
+            background-color: white;
+            border:none;
+            border-radius: 0.5rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 0.1rem;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
+        }
+        .nutrition {
+            background-color: #3F6248;
+            color: white;
+            box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
+        }
+        .ingredients ul, .instructions ol {
+            padding-left: 1.5rem;
+        }
+        .instructions {
+            margin-top: 0rem;
+            margin-left: 0rem;
+            margin-bottom: 2rem;
+        }
+        .note {
+            margin-top: 2rem;
+            font-size: 0.875rem;
+            color: #666;
+        }
+        
+
+
+        @media (max-width: 1090px) {
+            .navbar-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+            .logout-btn {
+            background-color: #3F6248;
+            color: white;
+            border: none;
+            padding: 0rem 0rem 0rem 0rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            text-align: left;
+        }
+            .user-icon img {
+                display:none;
+            }
+        }
+
+/* Modal Background */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px; /* Limit max width */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Heading Styles */
+h3 {
+    margin: 0;
+    color: #333; /* Darker color for the title */
+}
+
+/* Input and Select Styles */
+.form-control {
+    font-size: 16px;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Rounded corners for inputs */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Button Styles */
+.btn {
+    padding: 10px 20px;
+    background-color: #3F6248; /* Bootstrap primary color */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #4A7657; /* Darker shade on hover */
+}
+
+/* Spacing for buttons */
+.mt-3 {
+    margin-top: 1rem; /* Adjust as needed */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 90%; /* Adjust modal width on smaller screens */
+    }
+}
+
+/* Style for the date input */
+#mealPlanDate {
+    width: 100%; /* Full width to match form controls */
+    padding: 10px; /* Add some padding for better spacing */
+    border: 1px solid #ccc; /* Standard border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1rem; /* Font size for better readability */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+/* Change border color on focus */
+#mealPlanDate:focus {
+    border-color: #007bff; /* Change border color to primary */
+    outline: none; /* Remove the default outline */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Light shadow on focus */
+}
+
+/* Add some margin for spacing */
+.mt-3 {
+    margin-top: 1rem; /* Space above the input */
+}
+
+.container2 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+}
