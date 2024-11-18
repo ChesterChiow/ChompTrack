@@ -1,0 +1,80 @@
+import pydoc
+"""
+database_queries.py
+
+This module provides a class for managing database queries using MySQL.
+It establishes a connection to a MySQL database and allows for closing the connection.
+
+Dependencies:
+- mysql.connector: This module requires the mysql-connector-python package.
+- credentials: This module expects a `credentials.py` file containing SQL_CREDENTIALS.
+
+Example usage:
+    from database_queries import DatabaseQueries
+
+    db = DatabaseQueries()
+    if db.connection.is_connected():
+        print("Successfully connected to the database")
+    db.close_connection()
+"""
+
+import mysql.connector
+from credentials import SQL_CREDENTIALS
+
+
+class DatabaseQueries:
+    """
+    A class to handle database queries for a MySQL database.
+
+    Attributes:
+        connection (mysql.connector.connection): The MySQL database connection object.
+        cursor (mysql.connector.cursor): The cursor for executing database queries.
+
+    Methods:
+        close_connection(): Closes the database connection and cursor.
+    """
+
+    def __init__(self):
+        """
+        Initializes the DatabaseQueries instance and establishes a connection to the MySQL database.
+
+        This constructor retrieves database credentials from the SQL_CREDENTIALS dictionary,
+        which should be defined in a separate credentials.py file.
+
+        Raises:
+            mysql.connector.Error: If the connection to the database fails.
+        """
+        self.connection = mysql.connector.connect(
+            host=SQL_CREDENTIALS.get('host'),
+            user=SQL_CREDENTIALS.get('user'),
+            password=SQL_CREDENTIALS.get('password'),
+            database=SQL_CREDENTIALS.get('database'),
+            port=SQL_CREDENTIALS.get('port')
+        )
+        self.cursor = self.connection.cursor()
+
+    def close_connection(self):
+        """
+        Closes the database cursor and connection if they are open.
+
+        This method checks if the connection is still active before attempting to close it.
+        It prints a confirmation message upon successful closure.
+
+        Returns:
+            None
+        """
+        if self.connection.is_connected():
+            self.cursor.close()
+            self.connection.close()
+            print("Connection closed")
+
+
+# Usage example:
+if __name__ == "__main__":
+    db = DatabaseQueries()
+
+    if db.connection.is_connected():
+        print("Successfully connected to the database")
+        # Example of calling another method would go here
+        db.close_connection()
+pyroc.writedoc(DatabaseQueries)

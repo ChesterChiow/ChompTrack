@@ -1,0 +1,324 @@
+import pydoc
+
+"""
+recipe_queries.py
+
+This module provides a class for managing recipe-related queries in a MySQL database.
+It extends the DatabaseQueries class to allow for inserting, finding, updating,
+and retrieving recipes, as well as interacting with the Spoonacular API.
+
+Dependencies:
+- DatabaseQueries: Requires the DatabaseQueries class from the appropriate module.
+- requests: Used for making HTTP requests to the Spoonacular API.
+- ChompTrack.server.enums.Cuisine: Contains the CuisineType enum.
+- ChompTrack.server.enums.MealType: Contains the MealType enum.
+- credentials: Imports the API key for accessing the Spoonacular API.
+- typing: Provides type hints for optional parameters.
+
+Example usage:
+    from recipe_queries import RecipeQueries
+
+    db = RecipeQueries()
+    recipes = db.get_random_recipes({'number': 5})
+    print(recipes)
+"""
+
+from DatabaseQueries import DatabaseQueries
+import requests
+#from ChompTrack.server.enums.Cuisine import CuisineType
+#from ChompTrack.server.enums.MealType import MealType
+from credentials import SPOONACULAR_API_KEY as api_key
+from typing import Optional
+
+
+class RecipeQueries(DatabaseQueries):
+    """
+    A class to handle recipe queries for a MySQL database, extending the DatabaseQueries class.
+
+    Methods:
+        insert_new_recipe(recipe_name: str, cuisine_type: str, meal_type: str,
+                          cooking_time: int, total_price: float, recipe_instructions: str) -> int:
+            Inserts a new recipe into the database and returns the recipe ID.
+        
+        find_recipe_by_name(recipe_name: str) -> Optional[int]:
+            Finds a recipe by its name and returns its ID.
+        
+        update_recipe(recipe_id: int, cuisine_type: CuisineType, meal_type: MealType,
+                      cooking_time: int, total_price: float, recipe_instructions: str) -> None:
+            Updates an existing recipe in the database.
+        
+        save_restrictions_and_intolerances(recipe_id: int, recipe_data: dict) -> None:
+            Saves dietary restrictions and intolerances for the given recipe.
+        
+        find_recipe(recipe_name: Optional[str] = None, cuisine_type: Optional[CuisineType] = None,
+                     meal_type: Optional[MealType] = None, max_cooking_time: Optional[int] = None,
+                     max_total_price: Optional[float] = None, dietary_restrictions: Optional[list] = None,
+                     intolerances: Optional[list] = None) -> list:
+            Finds recipes based on given criteria.
+        
+        get_random_recipes(conditions: dict) -> dict:
+            Fetches random recipes from the Spoonacular API based on given conditions.
+        
+        get_recipe_ingredients_and_price(recipe_id: int) -> dict:
+            Fetches ingredient details and pricing for a specific recipe from the Spoonacular API.
+    """
+
+    def __init__(self):
+        """
+        Initializes the RecipeQueries instance by calling the superclass constructor.
+
+        This constructor establishes a connection to the database by invoking the 
+        __init__ method of the DatabaseQueries class.
+        """
+        super().__init__()
+
+    def insert_new_recipe(self, recipe_name: str, cuisine_type: str, meal_type: str,
+                          cooking_time: int, total_price: float, recipe_instructions: str) -> int:
+        """
+        Inserts a new recipe into the database and returns the recipe ID.
+
+        :param recipe_name: Name of the recipe.
+        :param cuisine_type: Cuisine type of the recipe.
+        :param meal_type: Meal type of the recipe (e.g., Dinner, Lunch).
+        :param cooking_time: Time in minutes to prepare the recipe.
+        :param total_price: Price per serving of the recipe.
+        :param recipe_instructions: Instructions for preparing the recipe.
+        :return: ID of the newly inserted recipe.
+        """
+        insert_query = """
+        INSERT INTO Recipes (recipe_name, cuisine_type, meal_type, cooking_time, total_price, recipe_instructions)
+        VALUES (%s, %s, %s, %s, %s, %s)
+        """
+        self.cursor.execute(insert_query,
+                            (recipe_name, cuisine_type, meal_type, cooking_time, total_price, recipe_instructions))
+        self.connection.commit()
+
+        return self.cursor.lastrowid
+
+    def find_recipe_by_name(self, recipe_name: str) -> Optional[int]:
+        """
+        Finds a recipe by its name.
+
+        :param recipe_name: Name of the recipe.
+        :return: Recipe ID if found, None otherwise.
+        """
+        query = "SELECT recipe_id FROM Recipes WHERE recipe_name = %s"
+        self.cursor.execute(query, (recipe_name,))
+        result = self.cursor.fetchone()
+        return result['recipe_id'] if result else None
+
+    def update_recipe(self, recipe_id: int, cuisine_type: 'CuisineType', meal_type: 'MealType',
+                      cooking_time: int, total_price: float, recipe_instructions: str) -> None:
+        """
+        Updates an existing recipe in the database.
+
+        :param recipe_id: ID of the recipe to update.
+        :param cuisine_type: New cuisine type.
+        :param meal_type: New meal type.
+        :param cooking_time: New cooking time.
+        :param total_price: New total price.
+        :param recipe_instructions: New recipe instructions.
+        """
+        update_query = """
+        UPDATE Recipes SET
+            cuisine_type = %s,
+            meal_type = %s,
+            cooking_time = %s,
+            total_price = %s,
+            recipe_instructions = %s
+        WHERE recipe_id = %s
+        """
+        self.cursor.execute(update_query, (
+            cuisine_type.value, meal_type.value, cooking_time, total_price, recipe_instructions, recipe_id))
+        self.connection.commit()
+
+    def save_restrictions_and_intolerances(self, recipe_id: int, recipe_data: dict) -> None:
+        """
+        Saves dietary restrictions and intolerances for the given recipe.
+
+        :param recipe_id: ID of the recipe.
+        :param recipe_data: Data of the recipe from the API response.
+        """
+        dietary_restrictions = recipe_data.get('restrictions', [])
+        intolerances = recipe_data.get('intolerances', [])
+
+        for restriction in dietary_restrictions:
+            self.cursor.execute("""
+            INSERT INTO RecipeRestrictions (recipe_id, restriction_name)
+            VALUES (%s, %s)
+            ON DUPLICATE KEY UPDATE restriction_name = VALUES(restriction_name)
+            """, (recipe_id, restriction))
+
+        for intolerance in intolerances:
+            self.cursor.execute("""
+            INSERT INTO RecipeIntolerance (recipe_id, intolerance_name)
+            VALUES (%s, %s)
+            ON DUPLICATE KEY UPDATE intolerance_name = VALUES(intolerance_name)
+            """, (recipe_id, intolerance))
+
+        self.connection.commit()
+
+    def find_recipe(self, recipe_name: Optional[str] = None, cuisine_type: Optional['CuisineType'] = None,
+                    meal_type: Optional['MealType'] = None, max_cooking_time: Optional[int] = None,
+                    max_total_price: Optional[float] = None, dietary_restrictions: Optional[list] = None,
+                    intolerances: Optional[list] = None) -> list:
+        """
+        Finds recipes based on the given criteria. If a criterion is None, any value is acceptable.
+
+        :param recipe_name: Name of the recipe (can be a substring match).
+        :param cuisine_type: Enum value for cuisine type.
+        :param meal_type: Enum value for meal type.
+        :param max_cooking_time: Maximum cooking time in minutes.
+        :param max_total_price: Maximum total price of the recipe.
+        :param dietary_restrictions: List of dietary restriction names to filter recipes.
+        :param intolerances: List of intolerance names to filter recipes.
+        :return: List of matching recipes, each as a dictionary with column names as keys.
+        """
+        query = """
+        SELECT r.* FROM Recipes r
+        LEFT JOIN RecipeRestrictions rr ON r.recipe_id = rr.recipe_id
+        LEFT JOIN RecipeIntolerance ri ON r.recipe_id = ri.recipe_id
+        WHERE 1=1
+        """
+        params = []
+
+        if recipe_name:
+            query += " AND r.recipe_name LIKE %s"
+            params.append(f"%{recipe_name}%")
+
+        if cuisine_type:
+            query += " AND r.cuisine_type = %s"
+            params.append(cuisine_type.value)
+
+        if meal_type:
+            query += " AND r.meal_type = %s"
+            params.append(meal_type.value)
+
+        if max_cooking_time is not None:
+            query += " AND r.cooking_time <= %s"
+            params.append(max_cooking_time)
+
+        if max_total_price is not None:
+            query += " AND r.total_price <= %s"
+            params.append(max_total_price)
+
+        if dietary_restrictions:
+            restriction_conditions = " OR ".join(["rr.restriction_name = %s" for _ in dietary_restrictions])
+            query += f" AND ({restriction_conditions})"
+            params.extend(dietary_restrictions)
+
+        if intolerances:
+            intolerance_conditions = " OR ".join(["ri.intolerance_name = %s" for _ in intolerances])
+            query += f" AND ({intolerance_conditions})"
+            params.extend(intolerances)
+
+        try:
+            self.cursor.execute(query, tuple(params))
+            result = self.cursor.fetchall()
+            return result
+        except Exception as e:
+            print(f"Error finding recipe: {e}")
+            return []
+
+    def get_random_recipes(self, conditions: dict) -> dict:
+        """
+        Fetches random recipes from the Spoonacular API based on given conditions.
+
+        :param conditions: Dictionary of conditions to apply to the API request.
+        :return: Response JSON from the Spoonacular API containing random recipes.
+        """
+        api_url = "https://api.spoonacular.com/recipes/random"
+        conditions['apiKey'] = api_key
+        response = requests.get(api_url, params=conditions)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            print(f"Error fetching recipes: {response.status_code}")
+            return {}
+
+    def get_recipe_ingredients_and_price(self, recipe_id: int) -> dict:
+        """
+        Fetches ingredient details and pricing for a specific recipe from the Spoonacular API.
+
+        :param recipe_id: ID of the recipe to fetch details for.
+        :return: Response JSON from the Spoonacular API containing ingredient details and price breakdown.
+        """
+        api_url = f"https://api.spoonacular.com/recipes/{recipe_id}/priceBreakdownWidget.json"
+        conditions = {'apiKey': api_key}
+        response = requests.get(api_url, params=conditions)
+
+        if response.status_code == 200:
+            return response.json()
+        else:
+            print(f"Error fetching recipes: {response.status_code}")
+            return {}
+
+# Usage example:
+if __name__ == '__main__':
+    db = RecipeQueries()
+
+    params = {
+        'number': 5,
+        'exclude-tags': '',
+        'includeNutrition': True,
+        'includePrice': True
+    }
+
+    result = db.get_random_recipes(params)
+    recipes = result.get('recipes', [])
+    print(recipes)
+
+    for recipe in recipes:
+        spoonacular_id = recipe.get('id')
+        title = recipe.get('title')
+        image = recipe.get('image')
+        cookingMinutes = recipe.get('cookingMinutes')
+        source_url = recipe.get('sourceUrl')
+        price = recipe.get('pricePerServing')
+
+        nutrition = recipe.get('nutrition', {})
+        nutrients = nutrition.get('nutrients', [])
+        calories, carbohydrates, fats, protein = None, None, None, None
+        
+        for nutrient in nutrients:
+            name = nutrient.get('name')
+            if name == 'Calories':
+                calories = nutrient
+            elif name == 'Carbohydrates':
+                carbohydrates = nutrient
+            elif name == 'Fat':
+                fats = nutrient
+            elif name == 'Protein':
+                protein = nutrient
+
+        ingredients = recipe.get('extendedIngredients', [])
+        cuisines = recipe.get('cuisines', [])
+        cuisine = cuisines[0] if cuisines else None
+
+        dishTypes = recipe.get('dishTypes', [])
+        breakfast = 'breakfast' in dishTypes
+        lunch = 'lunch' in dishTypes
+        dinner = 'dinner' in dishTypes
+        snack = 'snack' in dishTypes
+
+        recipe_data = {
+            'spoonacular_id': spoonacular_id,
+            'name': title,
+            'image': image,
+            'cookingMinutes': cookingMinutes,
+            'recipe_link': source_url,
+            'price': round(price / 100, 2),
+            'calories': calories,
+            'protein': protein,
+            'carbohydrates': carbohydrates,
+            'fats': fats,
+            'ingredients': ingredients,
+            'breakfast': breakfast,
+            'lunch': lunch,
+            'dinner': dinner,
+            'snack': snack,
+            'cuisine': cuisine,
+        }
+
+        print(recipe_data)
+pydoc.writedoc(RecipeQueries)

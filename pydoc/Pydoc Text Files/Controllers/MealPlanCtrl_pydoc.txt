@@ -1,0 +1,37 @@
+import pydoc
+"""
+MODULE: MealPlanCtrl
+
+CLASSES:
+    class MealPlanCtrl
+        MealPlanCtrl()
+
+        METHODS:
+            __init__(self)
+                Initializes a MealPlanCtrl instance.
+                
+                Attributes:
+                    mealplan_queries (MealPlanQueries): Instance for executing meal plan-related database queries.
+"""
+
+from server.DatabaseCtrl.MealPlanQueries import MealPlanQueries
+
+
+class MealPlanCtrl:
+    """
+    MealPlanCtrl is a controller class responsible for managing meal plan-related operations.
+
+    Attributes:
+        mealplan_queries (MealPlanQueries): An instance of MealPlanQueries used to 
+                                             interact with the database for meal plan operations.
+    """
+
+    def __init__(self):
+        """
+        Initializes a MealPlanCtrl instance.
+
+        This constructor creates an instance of the MealPlanQueries class, which is used 
+        to perform operations related to meal plans in the database.
+        """
+        self.mealplan_queries = MealPlanQueries()
+pydoc.writedoc(MealPlanCtrl)

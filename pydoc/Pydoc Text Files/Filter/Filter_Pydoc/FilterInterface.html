@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module FilterInterface</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>FilterInterface</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cdave%5Conedrive%20-%20nanyang%20technological%20university%5Cdesktop%5Cchomptrack%5C2006-scs2-44%5Cchomptrack%5Cserver%5Ccontrollers%5Cfilter%5Cfilterinterface.py">c:\users\dave\onedrive - nanyang technological university\desktop\chomptrack\2006-scs2-44\chomptrack\server\controllers\filter\filterinterface.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pydoc.html">pydoc</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="FilterInterface.html#FilterInterface">FilterInterface</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="FilterInterface">class <strong>FilterInterface</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>An&nbsp;abstract&nbsp;interface&nbsp;class&nbsp;for&nbsp;recipe&nbsp;filters.<br>
+&nbsp;<br>
+This&nbsp;interface&nbsp;defines&nbsp;the&nbsp;structure&nbsp;for&nbsp;filters&nbsp;that&nbsp;can&nbsp;be&nbsp;applied&nbsp;to&nbsp;a&nbsp;list&nbsp;of&nbsp;recipes.<br>
+Any&nbsp;filter&nbsp;class&nbsp;inheriting&nbsp;from&nbsp;<a href="#FilterInterface">FilterInterface</a>&nbsp;must&nbsp;implement&nbsp;the&nbsp;`apply`&nbsp;method.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="FilterInterface-apply"><strong>apply</strong></a>(self, recipeList: list) -&gt; list</dt><dd><tt>Applies&nbsp;a&nbsp;filtering&nbsp;criterion&nbsp;to&nbsp;a&nbsp;list&nbsp;of&nbsp;recipes.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;must&nbsp;be&nbsp;implemented&nbsp;by&nbsp;subclasses.&nbsp;It&nbsp;should&nbsp;take&nbsp;a&nbsp;list&nbsp;of&nbsp;recipes&nbsp;as&nbsp;input,<br>
+apply&nbsp;a&nbsp;specific&nbsp;filtering&nbsp;criterion,&nbsp;and&nbsp;return&nbsp;the&nbsp;filtered&nbsp;list.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;recipeList&nbsp;(list):&nbsp;A&nbsp;list&nbsp;of&nbsp;recipes&nbsp;to&nbsp;filter.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list:&nbsp;The&nbsp;filtered&nbsp;list&nbsp;of&nbsp;recipes.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;NotImplementedError:&nbsp;If&nbsp;a&nbsp;subclass&nbsp;does&nbsp;not&nbsp;implement&nbsp;this&nbsp;method.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

@@ -1,0 +1,139 @@
+import pydoc
+from typing import List, Optional
+from ChompTrack.server.enums.Cuisine import CuisineType
+from ChompTrack.server.enums.MealType import MealType
+
+class Recipe:
+    """
+    A class to represent a recipe.
+
+    Attributes:
+    ----------
+    recipe_id : Optional[int]
+        The unique identifier for the recipe.
+    recipe_name : str
+        The name of the recipe.
+    cuisine_type : CuisineType
+        The type of cuisine the recipe belongs to.
+    meal_type : MealType
+        The type of meal (e.g., breakfast, lunch, dinner).
+    cooking_time : int
+        The time required to cook the recipe in minutes.
+    total_price : float
+        The estimated total price of the recipe ingredients.
+    recipe_instructions : str
+        Instructions on how to prepare the recipe.
+    """
+
+    def __init__(self, recipe_id: Optional[int] = None, recipe_name: str = "",
+                 cuisine_type: CuisineType = CuisineType.AMERICAN,
+                 meal_type: MealType = MealType.DINNER,
+                 cooking_time: int = 0, total_price: float = 0.0,
+                 recipe_instructions: str = ""):
+        """
+        Initializes a Recipe instance with the provided parameters.
+
+        Parameters:
+        ----------
+        recipe_id : Optional[int], optional
+            Unique identifier for the recipe (default is None).
+        recipe_name : str, optional
+            Name of the recipe (default is empty string).
+        cuisine_type : CuisineType, optional
+            The cuisine type (default is CuisineType.AMERICAN).
+        meal_type : MealType, optional
+            The type of meal (default is MealType.DINNER).
+        cooking_time : int, optional
+            Cooking time in minutes (default is 0).
+        total_price : float, optional
+            Total price of the recipe (default is 0.0).
+        recipe_instructions : str, optional
+            Instructions for the recipe (default is empty string).
+        """
+        self.recipe_id = recipe_id
+        self.recipe_name = recipe_name
+        self.cuisine_type = cuisine_type
+        self.meal_type = meal_type
+        self.cooking_time = cooking_time
+        self.total_price = total_price
+        self.recipe_instructions = recipe_instructions
+
+    def save(self, queries: 'RecipeQueries') -> int:
+        """
+        Saves the recipe to the database.
+
+        If the recipe has a recipe_id, it updates the existing recipe;
+        otherwise, it creates a new one.
+
+        Parameters:
+        ----------
+        queries : RecipeQueries
+            Instance of RecipeQueries to handle database operations.
+
+        Returns:
+        -------
+        int
+            The recipe_id of the saved recipe.
+        """
+        if self.recipe_id:
+            # Implement update logic if needed
+            print("Update functionality not implemented.")
+            return self.recipe_id
+        else:
+            return queries.insert_new_recipe(self.recipe_name, self.cuisine_type, self.meal_type,
+                                             self.cooking_time, self.total_price, self.recipe_instructions)
+
+    @staticmethod
+    def find_recipes(queries: 'RecipeQueries', recipe_name: Optional[str] = None,
+                     cuisine_type: Optional[CuisineType] = None, meal_type: Optional[MealType] = None,
+                     max_cooking_time: Optional[int] = None, max_total_price: Optional[float] = None,
+                     dietary_restrictions: Optional[List[str]] = None,
+                     intolerances: Optional[List[str]] = None) -> List['Recipe']:
+        """
+        Finds recipes based on the given criteria.
+
+        Parameters:
+        ----------
+        queries : RecipeQueries
+            Instance of RecipeQueries to handle database operations.
+        recipe_name : Optional[str]
+            Name of the recipe (can be a substring match).
+        cuisine_type : Optional[CuisineType]
+            Enum value for cuisine type.
+        meal_type : Optional[MealType]
+            Enum value for meal type.
+        max_cooking_time : Optional[int]
+            Maximum cooking time in minutes.
+        max_total_price : Optional[float]
+            Maximum total price of the recipe.
+        dietary_restrictions : Optional[List[str]]
+            List of dietary restriction names.
+        intolerances : Optional[List[str]]
+            List of intolerance names.
+
+        Returns:
+        -------
+        List[Recipe]
+            List of Recipe instances matching the criteria.
+        """
+        result = queries.find_recipe(recipe_name, cuisine_type, meal_type,
+                                     max_cooking_time, max_total_price,
+                                     dietary_restrictions, intolerances)
+
+        return [Recipe(**recipe) for recipe in result]  # Adjust based on how data is returned
+
+    def __str__(self):
+        """
+        Returns a string representation of the Recipe instance.
+
+        Returns:
+        -------
+        str
+            A string representation of the recipe.
+        """
+        return f"Recipe(id={self.recipe_id}, name={self.recipe_name}, cuisine={self.cuisine_type}, " \
+               f"meal_type={self.meal_type}, cooking_time={self.cooking_time}, " \
+               f"total_price={self.total_price})"
+
+# Generate the Pydoc HTML file for the Recipe class
+pydoc.writedoc('Recipe')

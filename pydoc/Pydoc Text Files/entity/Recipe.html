@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module Recipe</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>Recipe</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cdave%5Conedrive%20-%20nanyang%20technological%20university%5Cdesktop%5Cchomptrack%5C2006-scs2-44%5Cchomptrack%5Cserver%5Centity%5Crecipe.py">c:\users\dave\onedrive - nanyang technological university\desktop\chomptrack\2006-scs2-44\chomptrack\server\entity\recipe.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pydoc.html">pydoc</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="Recipe.html#Recipe">Recipe</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Recipe">class <strong>Recipe</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Recipe">Recipe</a>(recipe_id:&nbsp;Optional[int]&nbsp;=&nbsp;None,&nbsp;recipe_name:&nbsp;str&nbsp;=&nbsp;'',&nbsp;cuisine_type:&nbsp;ChompTrack.server.enums.Cuisine.CuisineType&nbsp;=&nbsp;&amp;lt;CuisineType.AMERICAN:&nbsp;'American'&amp;gt;,&nbsp;meal_type:&nbsp;ChompTrack.server.enums.MealType.MealType&nbsp;=&nbsp;&amp;lt;MealType.DINNER:&nbsp;'Dinner'&amp;gt;,&nbsp;cooking_time:&nbsp;int&nbsp;=&nbsp;0,&nbsp;total_price:&nbsp;float&nbsp;=&nbsp;0.0,&nbsp;recipe_instructions:&nbsp;str&nbsp;=&nbsp;'')<br>
+&nbsp;<br>
+A&nbsp;class&nbsp;to&nbsp;represent&nbsp;a&nbsp;recipe.<br>
+&nbsp;<br>
+Attributes:<br>
+----------<br>
+recipe_id&nbsp;:&nbsp;Optional[int]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;unique&nbsp;identifier&nbsp;for&nbsp;the&nbsp;recipe.<br>
+recipe_name&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;recipe.<br>
+cuisine_type&nbsp;:&nbsp;CuisineType<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;type&nbsp;of&nbsp;cuisine&nbsp;the&nbsp;recipe&nbsp;belongs&nbsp;to.<br>
+meal_type&nbsp;:&nbsp;MealType<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;type&nbsp;of&nbsp;meal&nbsp;(e.g.,&nbsp;breakfast,&nbsp;lunch,&nbsp;dinner).<br>
+cooking_time&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;time&nbsp;required&nbsp;to&nbsp;cook&nbsp;the&nbsp;recipe&nbsp;in&nbsp;minutes.<br>
+total_price&nbsp;:&nbsp;float<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;estimated&nbsp;total&nbsp;price&nbsp;of&nbsp;the&nbsp;recipe&nbsp;ingredients.<br>
+recipe_instructions&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Instructions&nbsp;on&nbsp;how&nbsp;to&nbsp;prepare&nbsp;the&nbsp;recipe.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Recipe-__init__"><strong>__init__</strong></a>(self, recipe_id: Optional[int] = None, recipe_name: str = '', cuisine_type: ChompTrack.server.enums.Cuisine.CuisineType = &lt;CuisineType.AMERICAN: 'American'&gt;, meal_type: ChompTrack.server.enums.MealType.MealType = &lt;MealType.DINNER: 'Dinner'&gt;, cooking_time: int = 0, total_price: float = 0.0, recipe_instructions: str = '')</dt><dd><tt>Initializes&nbsp;a&nbsp;<a href="#Recipe">Recipe</a>&nbsp;instance&nbsp;with&nbsp;the&nbsp;provided&nbsp;parameters.<br>
+&nbsp;<br>
+Parameters:<br>
+----------<br>
+recipe_id&nbsp;:&nbsp;Optional[int],&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Unique&nbsp;identifier&nbsp;for&nbsp;the&nbsp;recipe&nbsp;(default&nbsp;is&nbsp;None).<br>
+recipe_name&nbsp;:&nbsp;str,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;of&nbsp;the&nbsp;recipe&nbsp;(default&nbsp;is&nbsp;empty&nbsp;string).<br>
+cuisine_type&nbsp;:&nbsp;CuisineType,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;cuisine&nbsp;type&nbsp;(default&nbsp;is&nbsp;CuisineType.AMERICAN).<br>
+meal_type&nbsp;:&nbsp;MealType,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;type&nbsp;of&nbsp;meal&nbsp;(default&nbsp;is&nbsp;MealType.DINNER).<br>
+cooking_time&nbsp;:&nbsp;int,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Cooking&nbsp;time&nbsp;in&nbsp;minutes&nbsp;(default&nbsp;is&nbsp;0).<br>
+total_price&nbsp;:&nbsp;float,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Total&nbsp;price&nbsp;of&nbsp;the&nbsp;recipe&nbsp;(default&nbsp;is&nbsp;0.0).<br>
+recipe_instructions&nbsp;:&nbsp;str,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Instructions&nbsp;for&nbsp;the&nbsp;recipe&nbsp;(default&nbsp;is&nbsp;empty&nbsp;string).</tt></dd></dl>
+
+<dl><dt><a name="Recipe-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;string&nbsp;representation&nbsp;of&nbsp;the&nbsp;<a href="#Recipe">Recipe</a>&nbsp;instance.<br>
+&nbsp;<br>
+Returns:<br>
+-------<br>
+str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;string&nbsp;representation&nbsp;of&nbsp;the&nbsp;recipe.</tt></dd></dl>
+
+<dl><dt><a name="Recipe-save"><strong>save</strong></a>(self, queries: 'RecipeQueries') -&gt; int</dt><dd><tt>Saves&nbsp;the&nbsp;recipe&nbsp;to&nbsp;the&nbsp;database.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;recipe&nbsp;has&nbsp;a&nbsp;recipe_id,&nbsp;it&nbsp;updates&nbsp;the&nbsp;existing&nbsp;recipe;<br>
+otherwise,&nbsp;it&nbsp;creates&nbsp;a&nbsp;new&nbsp;one.<br>
+&nbsp;<br>
+Parameters:<br>
+----------<br>
+queries&nbsp;:&nbsp;RecipeQueries<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Instance&nbsp;of&nbsp;RecipeQueries&nbsp;to&nbsp;handle&nbsp;database&nbsp;operations.<br>
+&nbsp;<br>
+Returns:<br>
+-------<br>
+int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;recipe_id&nbsp;of&nbsp;the&nbsp;saved&nbsp;recipe.</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="Recipe-find_recipes"><strong>find_recipes</strong></a>(queries: 'RecipeQueries', recipe_name: Optional[str] = None, cuisine_type: Optional[ChompTrack.server.enums.Cuisine.CuisineType] = None, meal_type: Optional[ChompTrack.server.enums.MealType.MealType] = None, max_cooking_time: Optional[int] = None, max_total_price: Optional[float] = None, dietary_restrictions: Optional[List[str]] = None, intolerances: Optional[List[str]] = None) -&gt; List[ForwardRef('Recipe')]</dt><dd><tt>Finds&nbsp;recipes&nbsp;based&nbsp;on&nbsp;the&nbsp;given&nbsp;criteria.<br>
+&nbsp;<br>
+Parameters:<br>
+----------<br>
+queries&nbsp;:&nbsp;RecipeQueries<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Instance&nbsp;of&nbsp;RecipeQueries&nbsp;to&nbsp;handle&nbsp;database&nbsp;operations.<br>
+recipe_name&nbsp;:&nbsp;Optional[str]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;of&nbsp;the&nbsp;recipe&nbsp;(can&nbsp;be&nbsp;a&nbsp;substring&nbsp;match).<br>
+cuisine_type&nbsp;:&nbsp;Optional[CuisineType]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Enum&nbsp;value&nbsp;for&nbsp;cuisine&nbsp;type.<br>
+meal_type&nbsp;:&nbsp;Optional[MealType]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Enum&nbsp;value&nbsp;for&nbsp;meal&nbsp;type.<br>
+max_cooking_time&nbsp;:&nbsp;Optional[int]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Maximum&nbsp;cooking&nbsp;time&nbsp;in&nbsp;minutes.<br>
+max_total_price&nbsp;:&nbsp;Optional[float]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Maximum&nbsp;total&nbsp;price&nbsp;of&nbsp;the&nbsp;recipe.<br>
+dietary_restrictions&nbsp;:&nbsp;Optional[List[str]]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;dietary&nbsp;restriction&nbsp;names.<br>
+intolerances&nbsp;:&nbsp;Optional[List[str]]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;intolerance&nbsp;names.<br>
+&nbsp;<br>
+Returns:<br>
+-------<br>
+List[<a href="#Recipe">Recipe</a>]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;<a href="#Recipe">Recipe</a>&nbsp;instances&nbsp;matching&nbsp;the&nbsp;criteria.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>List</strong> = typing.List<br>
+<strong>Optional</strong> = typing.Optional</td></tr></table>
+</body></html>

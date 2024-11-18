@@ -1,0 +1,155 @@
+import pydoc
+from ChompTrack.server.entity.User import User
+
+class UserCtrl:
+    """Controller class to manage and update user details."""
+
+    def __init__(self, user: User):
+        """
+        Initialize UserCtrl with a User instance.
+
+        Parameters:
+            user (User): An instance of the User class containing user information.
+        """
+        self.user = user
+
+    def update_username(self, username: str):
+        """
+        Update the user's username.
+
+        Parameters:
+            username (str): The new username to assign to the user.
+        """
+        self.user.username = username
+
+    def update_name(self, name: str):
+        """
+        Update the user's full name.
+
+        Parameters:
+            name (str): The new name to assign to the user.
+        """
+        self.user.name = name
+
+    def update_email(self, email: str):
+        """
+        Update the user's email address.
+
+        Parameters:
+            email (str): The new email address for the user.
+        """
+        self.user.email = email
+
+    def update_gender(self, gender: str):
+        """
+        Update the user's gender if valid.
+
+        Parameters:
+            gender (str): The gender of the user; must be either "Male" or "Female".
+
+        Raises:
+            ValueError: If `gender` is not "Male" or "Female".
+        """
+        if gender not in ['Male', 'Female']:
+            raise ValueError("Gender must be 'Male' or 'Female'")
+        self.user.gender = gender
+
+    def update_activity_level(self, activity_level: str):
+        """
+        Update the user's activity level after validating the input.
+
+        Parameters:
+            activity_level (str): A base activity level (e.g., "Sedentary", "Lightly"). The method appends "Active" to this input.
+
+        Raises:
+            ValueError: If `activity_level` (appended with "Active") is not a valid level.
+        """
+        activity_level += 'Active'
+        valid_activity_levels = ['SedentaryActive', 'LightlyActive', 'ModeratelyActive', 'VeryActive', 'SuperActive']
+        if activity_level not in valid_activity_levels:
+            raise ValueError("Invalid activity level.")
+        self.user.activity_level = activity_level
+
+    def update_height(self, height: float):
+        """
+        Update the user's height in centimeters.
+
+        Parameters:
+            height (float): The user's height in centimeters.
+        """
+        self.user.height = height
+
+    def update_weight(self, weight: float):
+        """
+        Update the user's weight in kilograms.
+
+        Parameters:
+            weight (float): The user's weight in kilograms.
+        """
+        self.user.weight = weight
+
+    def update_age(self, age: int):
+        """
+        Update the user's age.
+
+        Parameters:
+            age (int): The new age of the user.
+        """
+        self.user.age = age
+
+    def recalculate_nutrition(self):
+        """
+        Recalculate and update the user's macronutrient and caloric needs based on their current attributes.
+
+        Returns:
+            None
+        """
+        self.user.protein, self.user.fats, self.user.carbohydrates = (
+            self.user.get_protein_needs(),
+            self.user.get_fat_needs(),
+            self.user.get_carbohydrate_needs()
+        )
+        self.user.calories = self.user.get_TDEE()
+
+    def update_user_details(self, **kwargs):
+        """
+        Update multiple user attributes at once, followed by nutrition recalculation.
+
+        Parameters:
+            **kwargs: A dictionary of attribute names and values to update on the user.
+
+        Raises:
+            ValueError: If an attribute in `kwargs` does not exist on the User object.
+        """
+        for key, value in kwargs.items():
+            if hasattr(self.user, key):
+                setattr(self.user, key, value)
+            else:
+                raise ValueError(f"User has no attribute '{key}'")
+
+        # Recalculate nutrition after updating details
+        self.recalculate_nutrition()
+
+    def get_user_info(self) -> str:
+        """
+        Provide a string summary of the user's details.
+
+        Returns:
+            str: A string representation of the user, typically their main attributes.
+        """
+        return str(self.user)
+
+    def get_user_intakes(self, date: str) -> dict:
+        """
+        Retrieve user's nutrient intakes for a specific date.
+
+        Parameters:
+            date (str): The date for which to retrieve intakes, in "DD-MM-YYYY" format.
+
+        Returns:
+            dict: A dictionary containing the user's intake data for the specified date.
+        """
+        return self.user.get_intakes(date)
+
+# Generate the Pydoc HTML file
+pydoc.writedoc('UserCtrl')

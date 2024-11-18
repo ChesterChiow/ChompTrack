@@ -1,0 +1,83 @@
+import pydoc
+"""
+meal_plan_queries.py
+
+This module provides a class for managing meal plan queries in a MySQL database.
+It extends the DatabaseQueries class to allow for the insertion of new meal plans.
+
+Dependencies:
+- server.DatabaseCtrl.DatabaseQueries: This module requires the DatabaseQueries class.
+- requests: This module is imported but not utilized in the current code.
+- typing: Used for type hinting (Optional).
+- sqlalchemy: Used for Date type.
+
+Example usage:
+    from meal_plan_queries import MealPlanQueries
+
+    db = MealPlanQueries()
+    meal_plan_id = db.insert_new_meal_plan(user_id=1, recipe_id=2, date='2024-10-31', completed=False)
+"""
+
+from DatabaseQueries import DatabaseQueries
+import requests
+from typing import Optional
+from sqlalchemy import Date
+
+
+class MealPlanQueries(DatabaseQueries):
+    """
+    A class to handle meal plan queries for a MySQL database, extending the DatabaseQueries class.
+
+    Methods:
+        insert_new_meal_plan(user_id: int, recipe_id: int, date: Date, completed: bool) -> int:
+            Inserts a new meal plan into the database and returns the meal plan ID.
+    """
+
+    def __init__(self):
+        """
+        Initializes the MealPlanQueries instance by calling the superclass constructor.
+
+        This constructor establishes a connection to the database by invoking the 
+        __init__ method of the DatabaseQueries class.
+        """
+        super().__init__()
+
+    def insert_new_meal_plan(self, user_id: int, recipe_id: int,
+                              date: Date, completed: bool) -> int:
+        """
+        Inserts a new meal plan into the database and returns the meal plan ID.
+
+        :param user_id: ID of the user.
+        :param recipe_id: ID of the recipe.
+        :param date: Date of the meal plan (should be in 'YYYY-MM-DD' format).
+        :param completed: Status of the meal plan indicating whether it has been completed.
+        :return: ID of the newly inserted meal plan, or None if an error occurs.
+        """
+        insert_query = """
+        INSERT INTO MealPlans (user_id, recipe_id, date, completed)
+        VALUES (%s, %s, %s, %s)
+        """
+
+        try:
+            # Execute the insert query
+            self.cursor.execute(insert_query,
+                                (user_id, recipe_id, date, completed))
+            
+            # Commit the transaction
+            self.connection.commit()
+
+            # Get the ID of the newly inserted meal plan
+            return self.cursor.lastrowid
+        
+        except Exception as e:
+            # Rollback the transaction in case of error
+            self.connection.rollback()
+            print("Error occurred while inserting meal plan:", e)
+            return None
+    
+
+# Usage example:
+if __name__ == '__main__':
+    db = MealPlanQueries()
+    # Example of inserting a new meal plan would go here.
+pydoc.writedoc(MealPlanQueries)

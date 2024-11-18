@@ -1,0 +1,52 @@
+from ChompTrack.server.DatabaseCtrl.RecipeQueries import RecipeQueries
+import pydoc
+
+class RecipeCtrl:
+    """
+    RecipeCtrl is a controller class responsible for managing recipe-related operations,
+    specifically fetching recipes from the Spoonacular API and storing them in a database.
+
+    Attributes:
+        recipe_queries (RecipeQueries): An instance of RecipeQueries used to interact 
+                                         with the database for recipe operations.
+    """
+
+    def __init__(self):
+        """
+        Initializes a RecipeCtrl instance.
+
+        This constructor creates an instance of the RecipeQueries class, which is used 
+        to perform operations related to recipe data in the database.
+        """
+        self.recipe_queries = RecipeQueries()
+
+    def fetch_and_store_recipes(self, conditions: dict) -> None:
+        """
+        Fetch recipes from the Spoonacular API based on provided conditions and store 
+        them in the database.
+
+        This method calls the fetch_and_store_recipes method of the RecipeQueries class 
+        to perform the actual fetching and storing of recipes. If an error occurs during 
+        this process, it logs an error message to the console.
+
+        Parameters:
+            conditions (dict): A dictionary containing query parameters for the API call. 
+                               This should include all necessary criteria to filter the 
+                               recipes being fetched from the Spoonacular API.
+
+        Returns:
+            None
+
+        Raises:
+            Exception: Any exception raised during the recipe fetching and storing 
+                       process is caught and logged. Specific exceptions can be raised 
+                       by the RecipeQueries class if the API call fails or the 
+                       database operations encounter issues.
+        """
+        try:
+            self.recipe_queries.fetch_and_store_recipes(conditions)
+            print("Recipes fetched and stored successfully.")
+        except Exception as e:
+            print(f"Error fetching and storing recipes: {e}")
+
+pydoc.writedoc(MealPlanCtrl)

@@ -1,0 +1,47 @@
+import pydoc
+from typing import List, Optional
+from datetime import date
+
+class Recipe:
+    """
+    Represents a meal plan recipe entry with attributes for user, recipe, and completion status.
+    
+    Attributes:
+        meal_plan_id (Optional[int]): Unique identifier for the meal plan. Defaults to None.
+        user_id (int): Unique identifier for the user. Defaults to 0.
+        recipe_id (int): Unique identifier for the recipe. Defaults to 0.
+        date (date): The date associated with the meal plan. Defaults to today's date.
+        completed (bool): Status indicating whether the meal plan is completed. Defaults to True.
+    """
+
+    def __init__(self, meal_plan_id: Optional[int] = None, 
+                 user_id: int = 0, recipe_id: int = 0,
+                 date: date = date.today(), completed: bool = True):
+        """
+        Initializes a new Recipe instance.
+        
+        Parameters:
+            meal_plan_id (Optional[int]): The meal plan ID, optional.
+            user_id (int): The user ID associated with the meal plan.
+            recipe_id (int): The recipe ID associated with the meal plan.
+            date (date): The date of the meal plan; defaults to today's date.
+            completed (bool): Whether the meal plan is completed; defaults to True.
+        """
+        self.meal_plan_id = meal_plan_id
+        self.user_id = user_id
+        self.recipe_id = recipe_id
+        self.date = date
+        self.completed = completed
+
+    def __str__(self):
+        """
+        Returns a string representation of the Recipe instance.
+        
+        Returns:
+            str: A formatted string displaying meal plan ID, user ID, recipe ID, date, and completion status.
+        """
+        return f"MealPlans(id={self.meal_plan_id}, user_id={self.user_id}, recipe_id={self.recipe_id}, " \
+               f"date={self.date}, completed={self.completed})"
+
+# Generate the Pydoc HTML file
+pydoc.writedoc('MealPlan')

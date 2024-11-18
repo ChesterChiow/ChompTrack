@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module RecipeQueries</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>RecipeQueries</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cdave%5Conedrive%20-%20nanyang%20technological%20university%5Cdesktop%5Cchomptrack%5C2006-scs2-44%5Cchomptrack%5Cserver%5Cdatabasectrl%5Crecipequeries.py">c:\users\dave\onedrive - nanyang technological university\desktop\chomptrack\2006-scs2-44\chomptrack\server\databasectrl\recipequeries.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pydoc.html">pydoc</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="DatabaseQueries.html#DatabaseQueries">DatabaseQueries.DatabaseQueries</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="RecipeQueries.html#RecipeQueries">RecipeQueries</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RecipeQueries">class <strong>RecipeQueries</strong></a>(<a href="DatabaseQueries.html#DatabaseQueries">DatabaseQueries.DatabaseQueries</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;class&nbsp;to&nbsp;handle&nbsp;recipe&nbsp;queries&nbsp;for&nbsp;a&nbsp;MySQL&nbsp;database,&nbsp;extending&nbsp;the&nbsp;<a href="DatabaseQueries.html#DatabaseQueries">DatabaseQueries</a>&nbsp;class.<br>
+&nbsp;<br>
+Methods:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#RecipeQueries-insert_new_recipe">insert_new_recipe</a>(recipe_name:&nbsp;str,&nbsp;cuisine_type:&nbsp;str,&nbsp;meal_type:&nbsp;str,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cooking_time:&nbsp;int,&nbsp;total_price:&nbsp;float,&nbsp;recipe_instructions:&nbsp;str)&nbsp;-&gt;&nbsp;int:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inserts&nbsp;a&nbsp;new&nbsp;recipe&nbsp;into&nbsp;the&nbsp;database&nbsp;and&nbsp;returns&nbsp;the&nbsp;recipe&nbsp;ID.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#RecipeQueries-find_recipe_by_name">find_recipe_by_name</a>(recipe_name:&nbsp;str)&nbsp;-&gt;&nbsp;Optional[int]:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finds&nbsp;a&nbsp;recipe&nbsp;by&nbsp;its&nbsp;name&nbsp;and&nbsp;returns&nbsp;its&nbsp;ID.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#RecipeQueries-update_recipe">update_recipe</a>(recipe_id:&nbsp;int,&nbsp;cuisine_type:&nbsp;CuisineType,&nbsp;meal_type:&nbsp;MealType,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cooking_time:&nbsp;int,&nbsp;total_price:&nbsp;float,&nbsp;recipe_instructions:&nbsp;str)&nbsp;-&gt;&nbsp;None:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updates&nbsp;an&nbsp;existing&nbsp;recipe&nbsp;in&nbsp;the&nbsp;database.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#RecipeQueries-save_restrictions_and_intolerances">save_restrictions_and_intolerances</a>(recipe_id:&nbsp;int,&nbsp;recipe_data:&nbsp;dict)&nbsp;-&gt;&nbsp;None:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves&nbsp;dietary&nbsp;restrictions&nbsp;and&nbsp;intolerances&nbsp;for&nbsp;the&nbsp;given&nbsp;recipe.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#RecipeQueries-find_recipe">find_recipe</a>(recipe_name:&nbsp;Optional[str]&nbsp;=&nbsp;None,&nbsp;cuisine_type:&nbsp;Optional[CuisineType]&nbsp;=&nbsp;None,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;meal_type:&nbsp;Optional[MealType]&nbsp;=&nbsp;None,&nbsp;max_cooking_time:&nbsp;Optional[int]&nbsp;=&nbsp;None,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max_total_price:&nbsp;Optional[float]&nbsp;=&nbsp;None,&nbsp;dietary_restrictions:&nbsp;Optional[list]&nbsp;=&nbsp;None,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;intolerances:&nbsp;Optional[list]&nbsp;=&nbsp;None)&nbsp;-&gt;&nbsp;list:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finds&nbsp;recipes&nbsp;based&nbsp;on&nbsp;given&nbsp;criteria.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#RecipeQueries-get_random_recipes">get_random_recipes</a>(conditions:&nbsp;dict)&nbsp;-&gt;&nbsp;dict:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fetches&nbsp;random&nbsp;recipes&nbsp;from&nbsp;the&nbsp;Spoonacular&nbsp;API&nbsp;based&nbsp;on&nbsp;given&nbsp;conditions.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#RecipeQueries-get_recipe_ingredients_and_price">get_recipe_ingredients_and_price</a>(recipe_id:&nbsp;int)&nbsp;-&gt;&nbsp;dict:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fetches&nbsp;ingredient&nbsp;details&nbsp;and&nbsp;pricing&nbsp;for&nbsp;a&nbsp;specific&nbsp;recipe&nbsp;from&nbsp;the&nbsp;Spoonacular&nbsp;API.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="RecipeQueries.html#RecipeQueries">RecipeQueries</a></dd>
+<dd><a href="DatabaseQueries.html#DatabaseQueries">DatabaseQueries.DatabaseQueries</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="RecipeQueries-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initializes&nbsp;the&nbsp;<a href="#RecipeQueries">RecipeQueries</a>&nbsp;instance&nbsp;by&nbsp;calling&nbsp;the&nbsp;superclass&nbsp;constructor.<br>
+&nbsp;<br>
+This&nbsp;constructor&nbsp;establishes&nbsp;a&nbsp;connection&nbsp;to&nbsp;the&nbsp;database&nbsp;by&nbsp;invoking&nbsp;the&nbsp;<br>
+__init__&nbsp;method&nbsp;of&nbsp;the&nbsp;<a href="DatabaseQueries.html#DatabaseQueries">DatabaseQueries</a>&nbsp;class.</tt></dd></dl>
+
+<dl><dt><a name="RecipeQueries-find_recipe"><strong>find_recipe</strong></a>(self, recipe_name: Optional[str] = None, cuisine_type: Optional[ForwardRef('CuisineType')] = None, meal_type: Optional[ForwardRef('MealType')] = None, max_cooking_time: Optional[int] = None, max_total_price: Optional[float] = None, dietary_restrictions: Optional[list] = None, intolerances: Optional[list] = None) -&gt; list</dt><dd><tt>Finds&nbsp;recipes&nbsp;based&nbsp;on&nbsp;the&nbsp;given&nbsp;criteria.&nbsp;If&nbsp;a&nbsp;criterion&nbsp;is&nbsp;None,&nbsp;any&nbsp;value&nbsp;is&nbsp;acceptable.<br>
+&nbsp;<br>
+:param&nbsp;recipe_name:&nbsp;Name&nbsp;of&nbsp;the&nbsp;recipe&nbsp;(can&nbsp;be&nbsp;a&nbsp;substring&nbsp;match).<br>
+:param&nbsp;cuisine_type:&nbsp;Enum&nbsp;value&nbsp;for&nbsp;cuisine&nbsp;type.<br>
+:param&nbsp;meal_type:&nbsp;Enum&nbsp;value&nbsp;for&nbsp;meal&nbsp;type.<br>
+:param&nbsp;max_cooking_time:&nbsp;Maximum&nbsp;cooking&nbsp;time&nbsp;in&nbsp;minutes.<br>
+:param&nbsp;max_total_price:&nbsp;Maximum&nbsp;total&nbsp;price&nbsp;of&nbsp;the&nbsp;recipe.<br>
+:param&nbsp;dietary_restrictions:&nbsp;List&nbsp;of&nbsp;dietary&nbsp;restriction&nbsp;names&nbsp;to&nbsp;filter&nbsp;recipes.<br>
+:param&nbsp;intolerances:&nbsp;List&nbsp;of&nbsp;intolerance&nbsp;names&nbsp;to&nbsp;filter&nbsp;recipes.<br>
+:return:&nbsp;List&nbsp;of&nbsp;matching&nbsp;recipes,&nbsp;each&nbsp;as&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;column&nbsp;names&nbsp;as&nbsp;keys.</tt></dd></dl>
+
+<dl><dt><a name="RecipeQueries-find_recipe_by_name"><strong>find_recipe_by_name</strong></a>(self, recipe_name: str) -&gt; Optional[int]</dt><dd><tt>Finds&nbsp;a&nbsp;recipe&nbsp;by&nbsp;its&nbsp;name.<br>
+&nbsp;<br>
+:param&nbsp;recipe_name:&nbsp;Name&nbsp;of&nbsp;the&nbsp;recipe.<br>
+:return:&nbsp;Recipe&nbsp;ID&nbsp;if&nbsp;found,&nbsp;None&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="RecipeQueries-get_random_recipes"><strong>get_random_recipes</strong></a>(self, conditions: dict) -&gt; dict</dt><dd><tt>Fetches&nbsp;random&nbsp;recipes&nbsp;from&nbsp;the&nbsp;Spoonacular&nbsp;API&nbsp;based&nbsp;on&nbsp;given&nbsp;conditions.<br>
+&nbsp;<br>
+:param&nbsp;conditions:&nbsp;Dictionary&nbsp;of&nbsp;conditions&nbsp;to&nbsp;apply&nbsp;to&nbsp;the&nbsp;API&nbsp;request.<br>
+:return:&nbsp;Response&nbsp;JSON&nbsp;from&nbsp;the&nbsp;Spoonacular&nbsp;API&nbsp;containing&nbsp;random&nbsp;recipes.</tt></dd></dl>
+
+<dl><dt><a name="RecipeQueries-get_recipe_ingredients_and_price"><strong>get_recipe_ingredients_and_price</strong></a>(self, recipe_id: int) -&gt; dict</dt><dd><tt>Fetches&nbsp;ingredient&nbsp;details&nbsp;and&nbsp;pricing&nbsp;for&nbsp;a&nbsp;specific&nbsp;recipe&nbsp;from&nbsp;the&nbsp;Spoonacular&nbsp;API.<br>
+&nbsp;<br>
+:param&nbsp;recipe_id:&nbsp;ID&nbsp;of&nbsp;the&nbsp;recipe&nbsp;to&nbsp;fetch&nbsp;details&nbsp;for.<br>
+:return:&nbsp;Response&nbsp;JSON&nbsp;from&nbsp;the&nbsp;Spoonacular&nbsp;API&nbsp;containing&nbsp;ingredient&nbsp;details&nbsp;and&nbsp;price&nbsp;breakdown.</tt></dd></dl>
+
+<dl><dt><a name="RecipeQueries-insert_new_recipe"><strong>insert_new_recipe</strong></a>(self, recipe_name: str, cuisine_type: str, meal_type: str, cooking_time: int, total_price: float, recipe_instructions: str) -&gt; int</dt><dd><tt>Inserts&nbsp;a&nbsp;new&nbsp;recipe&nbsp;into&nbsp;the&nbsp;database&nbsp;and&nbsp;returns&nbsp;the&nbsp;recipe&nbsp;ID.<br>
+&nbsp;<br>
+:param&nbsp;recipe_name:&nbsp;Name&nbsp;of&nbsp;the&nbsp;recipe.<br>
+:param&nbsp;cuisine_type:&nbsp;Cuisine&nbsp;type&nbsp;of&nbsp;the&nbsp;recipe.<br>
+:param&nbsp;meal_type:&nbsp;Meal&nbsp;type&nbsp;of&nbsp;the&nbsp;recipe&nbsp;(e.g.,&nbsp;Dinner,&nbsp;Lunch).<br>
+:param&nbsp;cooking_time:&nbsp;Time&nbsp;in&nbsp;minutes&nbsp;to&nbsp;prepare&nbsp;the&nbsp;recipe.<br>
+:param&nbsp;total_price:&nbsp;Price&nbsp;per&nbsp;serving&nbsp;of&nbsp;the&nbsp;recipe.<br>
+:param&nbsp;recipe_instructions:&nbsp;Instructions&nbsp;for&nbsp;preparing&nbsp;the&nbsp;recipe.<br>
+:return:&nbsp;ID&nbsp;of&nbsp;the&nbsp;newly&nbsp;inserted&nbsp;recipe.</tt></dd></dl>
+
+<dl><dt><a name="RecipeQueries-save_restrictions_and_intolerances"><strong>save_restrictions_and_intolerances</strong></a>(self, recipe_id: int, recipe_data: dict) -&gt; None</dt><dd><tt>Saves&nbsp;dietary&nbsp;restrictions&nbsp;and&nbsp;intolerances&nbsp;for&nbsp;the&nbsp;given&nbsp;recipe.<br>
+&nbsp;<br>
+:param&nbsp;recipe_id:&nbsp;ID&nbsp;of&nbsp;the&nbsp;recipe.<br>
+:param&nbsp;recipe_data:&nbsp;Data&nbsp;of&nbsp;the&nbsp;recipe&nbsp;from&nbsp;the&nbsp;API&nbsp;response.</tt></dd></dl>
+
+<dl><dt><a name="RecipeQueries-update_recipe"><strong>update_recipe</strong></a>(self, recipe_id: int, cuisine_type: 'CuisineType', meal_type: 'MealType', cooking_time: int, total_price: float, recipe_instructions: str) -&gt; None</dt><dd><tt>Updates&nbsp;an&nbsp;existing&nbsp;recipe&nbsp;in&nbsp;the&nbsp;database.<br>
+&nbsp;<br>
+:param&nbsp;recipe_id:&nbsp;ID&nbsp;of&nbsp;the&nbsp;recipe&nbsp;to&nbsp;update.<br>
+:param&nbsp;cuisine_type:&nbsp;New&nbsp;cuisine&nbsp;type.<br>
+:param&nbsp;meal_type:&nbsp;New&nbsp;meal&nbsp;type.<br>
+:param&nbsp;cooking_time:&nbsp;New&nbsp;cooking&nbsp;time.<br>
+:param&nbsp;total_price:&nbsp;New&nbsp;total&nbsp;price.<br>
+:param&nbsp;recipe_instructions:&nbsp;New&nbsp;recipe&nbsp;instructions.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="DatabaseQueries.html#DatabaseQueries">DatabaseQueries.DatabaseQueries</a>:<br>
+<dl><dt><a name="RecipeQueries-close_connection"><strong>close_connection</strong></a>(self)</dt><dd><tt>Closes&nbsp;the&nbsp;database&nbsp;cursor&nbsp;and&nbsp;connection&nbsp;if&nbsp;they&nbsp;are&nbsp;open.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;checks&nbsp;if&nbsp;the&nbsp;connection&nbsp;is&nbsp;still&nbsp;active&nbsp;before&nbsp;attempting&nbsp;to&nbsp;close&nbsp;it.<br>
+It&nbsp;prints&nbsp;a&nbsp;confirmation&nbsp;message&nbsp;upon&nbsp;successful&nbsp;closure.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="DatabaseQueries.html#DatabaseQueries">DatabaseQueries.DatabaseQueries</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>Optional</strong> = typing.Optional<br>
+<strong>api_key</strong> = '36c472996e014f43bf848a13e0885b31'</td></tr></table>
+</body></html>

@@ -1,0 +1,281 @@
+import pydoc
+from ChompTrack.server.DatabaseCtrl.UserQueries import UserQueries
+
+
+class User:
+    """
+    A class to represent a user in the application.
+
+    Attributes:
+    ----------
+    user_id : Optional[str]
+        The unique identifier for the user (set when added to the database).
+    username : Optional[str]
+        The user's username.
+    email : Optional[str]
+        The user's email address.
+    gender : Optional[str]
+        The user's gender.
+    activity_level : Optional[str]
+        The user's activity level (e.g., 'SedentaryActive', 'LightlyActive', etc.).
+    height : Optional[int]
+        The user's height in centimeters.
+    weight : Optional[int]
+        The user's weight in kilograms.
+    age : Optional[int]
+        The user's age.
+    protein : Optional[float]
+        The user's protein intake in grams.
+    fats : Optional[float]
+        The user's fat intake in grams.
+    carbohydrates : Optional[float]
+        The user's carbohydrate intake in grams.
+    calories : Optional[float]
+        The user's calorie intake in kilocalories.
+    logged_in : bool
+        Indicates whether the user is logged in.
+    register_complete : bool
+        Indicates whether the user's registration is complete.
+    userQueries : UserQueries
+        Instance of UserQueries for database operations.
+    """
+
+    def __init__(self, user_id: str = None, username: str = None, email: str = None, gender: str = None,
+                 activity_level: str = None, height: int = None, weight: int = None, age: int = None,
+                 protein: float = None, fats: float = None, carbohydrates: float = None, calories: float = None) -> None:
+        self.user_id: str = user_id
+        self.username: str = username
+        self.email: str = email
+        self.gender: str = gender
+        self.activity_level: str = activity_level
+        self.height: int = height  # in cm
+        self.weight: int = weight  # in kg
+        self.age: int = age
+        self.protein: float = protein  # in g
+        self.fats: float = fats  # in g
+        self.carbohydrates: float = carbohydrates  # in g
+        self.calories: float = calories  # in kcal
+        self.logged_in: bool = False
+        self.userQueries = UserQueries()
+        self.register_complete: bool = False
+
+    def complete_register(self):
+        """Marks the user registration as complete in the database."""
+        self.userQueries.update_completed(self.user_id)
+        self.register_complete = True
+
+    def get_register_complete(self) -> bool:
+        """
+        Checks if the user's registration is complete.
+
+        :return: Boolean indicating whether the registration is complete.
+        """
+        self.register_complete = self.userQueries.fetch_completed_status(self.user_id)
+
+        if not self.user_id:
+            print("User ID not set. Cannot load attributes.")
+            return
+
+        # Fetch attributes from the database
+        attributes = self.userQueries.logging_in_user(self.user_id)
+
+        if attributes:
+            self.username = attributes['username']
+            self.gender = attributes.get('gender', self.gender)
+            self.activity_level = attributes['activity_level']
+            self.height = attributes['height']
+            self.weight = attributes['weight']
+            self.age = attributes['age']
+            self.protein = attributes['protein']
+            self.fats = attributes['fats']
+            self.carbohydrates = attributes['carbohydrates']
+            self.calories = attributes['calories']
+            self.register_complete = True
+        else:
+            print("No attributes found for the specified user ID.")
+
+        return self.register_complete
+
+    def get_actual_intake(self, date: str):
+        """
+        Retrieves the user's actual nutrient intake for a specific date.
+
+        :param date: The date for which to fetch the intake data.
+        :return: A dictionary containing protein, fats, carbohydrates, and calories.
+        """
+        intake = self.userQueries.get_user_intake(date, self.user_id)
+        return {
+            'protein': intake['protein'],
+            'fats': intake['fats'],
+            'carbohydrates': intake['carbohydrates'],
+            'calories': intake['calories']
+        }
+
+    def is_logged_in(self) -> bool:
+        """Checks if the user is logged in.
+
+        :return: Boolean indicating whether the user is logged in.
+        """
+        return self.logged_in
+
+    def login_user(self):
+        """Logs in the user by setting the logged_in attribute to True."""
+        self.logged_in = True
+
+    def get_Basal_Metabolic_Rate(self) -> float:
+        """
+        Calculates the Basal Metabolic Rate (BMR) based on the user's gender, weight, height, and age.
+
+        :return: The calculated BMR value.
+        :raises ValueError: If gender is not 'Male' or 'Female'.
+        """
+        if self.gender == 'Male':
+            bmr = (10 * self.weight) + (6.25 * self.height) - (5 * self.age) + 5
+        elif self.gender == 'Female':
+            bmr = (10 * self.weight) + (6.25 * self.height) - (5 * self.age) - 161
+        else:
+            raise ValueError("Gender must be 'Male' or 'Female'")
+
+        return bmr
+
+    def get_TDEE(self) -> float:
+        """
+        Calculates the Total Daily Energy Expenditure (TDEE) based on the user's BMR and activity level.
+
+        :return: The calculated TDEE value.
+        :raises ValueError: If activity level is invalid.
+        """
+        bmr = self.get_Basal_Metabolic_Rate()
+        activity_multiplier = {
+            'SedentaryActive': 1.2,
+            'LightlyActive': 1.375,
+            'ModeratelyActive': 1.55,
+            'VeryActive': 1.725,
+            'SuperActive': 1.9
+        }
+        multiplier = activity_multiplier.get(self.activity_level)
+        if multiplier is None:
+            raise ValueError("Invalid activity level.")
+
+        return bmr * multiplier
+
+    def get_protein_needs(self) -> float:
+        """
+        Calculates the recommended protein intake based on the user's activity level and weight.
+
+        :return: Recommended protein intake in grams.
+        :raises ValueError: If activity level is invalid.
+        """
+        weight_kg = self.weight
+        if self.activity_level in ['SedentaryActive', 'LightlyActive']:
+            protein_range = (1.0, 1.2)
+        elif self.activity_level in ['ModeratelyActive', 'VeryActive', 'SuperActive']:
+            protein_range = (1.4, 2.2)
+        else:
+            raise ValueError("Invalid activity level.")
+
+        protein_low = round(weight_kg * protein_range[0])
+        protein_high = round(weight_kg * protein_range[1])
+        protein_middle = (protein_low + protein_high) / 2
+
+        return protein_middle
+
+    def get_fat_needs(self) -> int:
+        """
+        Calculates the recommended fat intake based on the user's weight.
+
+        :return: The recommended fat intake in grams.
+        """
+        weight_kg = self.weight
+        return round(weight_kg * 1.0)
+
+    def get_carbohydrate_needs(self) -> float:
+        """
+        Calculates the recommended carbohydrate intake range based on the user's TDEE.
+
+        :return: The average recommended carbohydrate intake in grams.
+        """
+        tdee = self.get_TDEE()
+        carb_calories_low = round(tdee * 0.45)
+        carb_calories_high = round(tdee * 0.65)
+
+        carbs_low = round(carb_calories_low / 4)  # 4 calories per gram of carbohydrate
+        carbs_high = round(carb_calories_high / 4)
+
+        return (carbs_low + carbs_high) / 2
+
+    def update_all_attributes(self, user_id=None, username=None, email=None, gender=None,
+                              activity_level=None, height=None, weight=None, age=None,
+                              protein=None, fats=None, carbohydrates=None, calories=None, logged_in=None):
+        """
+        Updates the user's attributes with provided values.
+
+        :param user_id: The user's ID.
+        :param username: The user's username.
+        :param email: The user's email.
+        :param gender: The user's gender ('Male' or 'Female').
+        :param activity_level: The user's activity level.
+        :param height: The user's height in cm.
+        :param weight: The user's weight in kg.
+        :param age: The user's age.
+        :param protein: The user's protein intake.
+        :param fats: The user's fat intake.
+        :param carbohydrates: The user's carbohydrate intake.
+        :param calories: The user's calorie intake.
+        :param logged_in: Boolean indicating whether the user is logged in.
+        :return: None
+        """
+        self.user_id = user_id
+        self.username = username
+        self.email = email
+        if gender:
+            self.gender = gender
+        if activity_level:
+            self.activity_level = activity_level
+        if height:
+            self.height = height
+        if weight:
+            self.weight = weight
+        if age:
+            self.age = age
+        if protein:
+            self.protein = protein
+        if fats:
+            self.fats = fats
+        if carbohydrates:
+            self.carbohydrates = carbohydrates
+        if calories:
+            self.calories = calories
+        self.logged_in = logged_in
+
+    def any_fields_empty(self) -> bool:
+        """
+        Checks if any essential user attributes are unset.
+
+        :return: Boolean indicating if any fields are None.
+        """
+        return (
+            self.gender is None or
+            self.activity_level is None or
+            self.height is None or
+            self.weight is None or
+            self.age is None or
+            self.protein is None or
+            self.fats is None or
+            self.carbohydrates is None or
+            self.calories is None or
+            self.logged_in is None
+        )
+
+    def __repr__(self):
+        """Returns a string representation of the User object."""
+        return (f"User(user_id={self.user_id}, username='{self.username}', "
+                f"email='{self.email}', gender='{self.gender}', "
+                f"activity_level='{self.activity_level}', height={self.height}, "
+                f"weight={self.weight}, age={self.age}, protein={self.protein}, "
+                f"fats={self.fats}, carbohydrates={self.carbohydrates}, "
+                f"calories={self.calories}, logged_in={self.logged_in})")
+
+
+# Generate documentation for the User class
+pydoc.writedoc('User')

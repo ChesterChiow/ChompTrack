@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module RecipeCtrl</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>RecipeCtrl</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cdave%5Conedrive%20-%20nanyang%20technological%20university%5Cdesktop%5Cchomptrack%5C2006-scs2-44%5Cchomptrack%5Cserver%5Ccontrollers%5Crecipectrl.py">c:\users\dave\onedrive - nanyang technological university\desktop\chomptrack\2006-scs2-44\chomptrack\server\controllers\recipectrl.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pydoc.html">pydoc</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="RecipeCtrl.html#RecipeCtrl">RecipeCtrl</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RecipeCtrl">class <strong>RecipeCtrl</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="RecipeCtrl-Spoonacular_GetFullRecipeInfo_Count"><strong>Spoonacular_GetFullRecipeInfo_Count</strong></a>(self, count: int, exclude_tags: list[str] = '') -&gt; dict</dt><dd><tt>Fetch&nbsp;detailed&nbsp;recipe&nbsp;information&nbsp;from&nbsp;Spoonacular&nbsp;API.<br>
+&nbsp;<br>
+:param&nbsp;count:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;recipes&nbsp;to&nbsp;retrieve.<br>
+&nbsp;<br>
+:param&nbsp;exclude_tags:&nbsp;list[str],&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Tags&nbsp;to&nbsp;exclude&nbsp;(e.g.,&nbsp;dietary&nbsp;restrictions&nbsp;like&nbsp;'vegetarian').<br>
+&nbsp;<br>
+:return:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Dictionary&nbsp;of&nbsp;recipes&nbsp;with&nbsp;keys:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;spoonacular_id&nbsp;(int):&nbsp;Recipe&nbsp;ID&nbsp;on&nbsp;Spoonacular.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;name&nbsp;(str):&nbsp;Recipe&nbsp;title.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;image&nbsp;(str):&nbsp;URL&nbsp;to&nbsp;recipe&nbsp;image.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;cookingMinutes&nbsp;(int):&nbsp;Cooking&nbsp;time&nbsp;in&nbsp;minutes.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;recipe_link&nbsp;(str):&nbsp;URL&nbsp;to&nbsp;full&nbsp;recipe.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;price&nbsp;(float):&nbsp;Price&nbsp;per&nbsp;serving&nbsp;in&nbsp;USD.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;nutrition:&nbsp;Nutrition&nbsp;information&nbsp;(calories,&nbsp;protein,&nbsp;etc.).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;meal&nbsp;suitability&nbsp;flags&nbsp;(bool):&nbsp;Breakfast,&nbsp;lunch,&nbsp;dinner,&nbsp;snack&nbsp;suitability.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;cuisine&nbsp;(str):&nbsp;Primary&nbsp;cuisine&nbsp;type.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;ingredients&nbsp;(list[dict]):&nbsp;Ingredients&nbsp;with&nbsp;names&nbsp;and&nbsp;quantities.</tt></dd></dl>
+
+<dl><dt><a name="RecipeCtrl-fetch_random_recipes_from_db"><strong>fetch_random_recipes_from_db</strong></a>(self, count: int, exclude_ids: list[int], exclude_tags: list[str] = '') -&gt; dict</dt><dd><tt>Fetch&nbsp;random&nbsp;recipes&nbsp;from&nbsp;the&nbsp;database,&nbsp;excluding&nbsp;specified&nbsp;recipe&nbsp;IDs.<br>
+&nbsp;<br>
+:param&nbsp;count:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;recipes&nbsp;to&nbsp;fetch.<br>
+:param&nbsp;exclude_ids:&nbsp;list[int]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Recipe&nbsp;IDs&nbsp;to&nbsp;exclude&nbsp;from&nbsp;the&nbsp;results.<br>
+:param&nbsp;exclude_tags:&nbsp;list[str],&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Tags&nbsp;to&nbsp;exclude&nbsp;from&nbsp;recipes.<br>
+&nbsp;<br>
+:return:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Dictionary&nbsp;of&nbsp;recipes&nbsp;with&nbsp;keys&nbsp;(index-based):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;recipeID&nbsp;(int):&nbsp;Recipe&nbsp;ID.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;name&nbsp;(str):&nbsp;Recipe&nbsp;name.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Breakfast,&nbsp;Lunch,&nbsp;Dinner,&nbsp;Snack&nbsp;(bool):&nbsp;Meal&nbsp;type&nbsp;suitability.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;cuisine&nbsp;(str):&nbsp;Cuisine&nbsp;type.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;cost&nbsp;(float):&nbsp;Price&nbsp;per&nbsp;serving.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;prepTime&nbsp;(int):&nbsp;Preparation&nbsp;time.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;image&nbsp;(str):&nbsp;URL&nbsp;to&nbsp;recipe&nbsp;image.</tt></dd></dl>
+
+<dl><dt><a name="RecipeCtrl-get_History"><strong>get_History</strong></a>(self, user_id: int) -&gt; list[dict]</dt><dd><tt>Retrieve&nbsp;the&nbsp;full&nbsp;recipe&nbsp;history&nbsp;for&nbsp;a&nbsp;given&nbsp;user.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ID&nbsp;of&nbsp;the&nbsp;user.<br>
+&nbsp;<br>
+:return:&nbsp;list[dict]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;dictionaries&nbsp;representing&nbsp;the&nbsp;user's&nbsp;recipe&nbsp;history.</tt></dd></dl>
+
+<dl><dt><a name="RecipeCtrl-get_nutrients_of_day"><strong>get_nutrients_of_day</strong></a>(self, user_id: int, date: str) -&gt; dict</dt><dd><tt>Retrieve&nbsp;total&nbsp;nutrient&nbsp;intake&nbsp;for&nbsp;a&nbsp;user&nbsp;on&nbsp;a&nbsp;specific&nbsp;date.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ID&nbsp;of&nbsp;the&nbsp;user.<br>
+:param&nbsp;date:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Date&nbsp;in&nbsp;'DD-MM-YYYY'&nbsp;format.<br>
+&nbsp;<br>
+:return:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Dictionary&nbsp;of&nbsp;total&nbsp;nutrient&nbsp;intake&nbsp;with&nbsp;keys:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;calories&nbsp;(int):&nbsp;Total&nbsp;calorie&nbsp;intake.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;fats&nbsp;(int):&nbsp;Total&nbsp;fat&nbsp;intake.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;protein&nbsp;(int):&nbsp;Total&nbsp;protein&nbsp;intake.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;carbohydrates&nbsp;(int):&nbsp;Total&nbsp;carbohydrate&nbsp;intake.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>api_key</strong> = '36c472996e014f43bf848a13e0885b31'</td></tr></table>
+</body></html>
