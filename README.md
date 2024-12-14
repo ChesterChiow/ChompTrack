@@ -193,10 +193,6 @@ This structure supports a clean separation of concerns, enabling efficient data 
 - Database: MySQL
 - Version Control: Git, GitHub
 
-### Design Tools
-
-- [Figma](https://www.figma.com/design/pQxXAVn36epCdS9owHQtzl/lab1-UI-Mockup?node-id=0-1&node-type=canvas)
-
 ## Design Patterns
 
 1. **`Factory Pattern`**
