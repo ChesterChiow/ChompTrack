@@ -6,10 +6,6 @@ Welcome to the official repository for NTU SC2006 Software Engineering group pro
   <img src="/ChompTrack/client/src/static/img/ChomptrackLogo.png" width=150 />
 </p>
 
-<p align="center">
-    <a href="https://github.com/softwarelab3/2006-SCS2-44">ChompTrack Github</a>
-</p>
-
 ChompTrack is your one-stop meal planner website, designed to make healthy eating and budgeting easy. With a vast selection of easy-to-follow recipes, users can conveniently plan daily meals while tracking their nutrition intake to ensure they meet their dietary goals. ChompTrack also reflects grocery prices, allowing users to manage their food budget efficiently. Built with Flask on the backend and HTML/CSS on the frontend, ChompTrack leverages several controllers for a streamlined user experience in nutrition tracking and meal planning.
 
 
@@ -26,12 +22,13 @@ ChompTrack is your one-stop meal planner website, designed to make healthy eatin
 <summary>Supporting Documentations</summary>
 <br>
 
-1. [Functional and Non-Functional Requirements](https://github.com/softwarelab3/2006-SCS2-44/blob/main/Lab5/Supporting%20Documents/Functional%20%26%20Non-Functional%20Requirements.pdf)
-2. [Use Case Model: Use Case Diagram and Descriptions](https://github.com/softwarelab3/2006-SCS2-44/tree/main/Lab5/Supporting%20Documents/Use%20Case%20Model)
-3. [User Interface Mockups](https://github.com/softwarelab3/2006-SCS2-44/blob/main/Lab5/Supporting%20Documents/UI%20Mockup.pdf)
-4. [Data Dictionary](https://github.com/softwarelab3/2006-SCS2-44/blob/main/Lab5/Supporting%20Documents/Data%20Dictionary.pdf)
-5. [Live Demo Presentation Slides](https://github.com/softwarelab3/2006-SCS2-44/blob/main/Lab5/Supporting%20Documents/Live%20Demonstration%20Slides.pdf)
-6. [Pydoc](https://github.com/softwarelab3/2006-SCS2-44/tree/main/pydoc)
+1. [Functional and Non-Functional Requirements](https://github.com/ChesterChiow/ChompTrack/blob/main/Supporting%20Documents/Functional%20%26%20Non-Functional%20Requirements.pdf)
+2. [Use Case Model: Use Case Diagram and Descriptions](https://github.com/ChesterChiow/ChompTrack/tree/main/Supporting%20Documents/Use%20Case%20Model)
+3. [User Interface Mockups](https://github.com/ChesterChiow/ChompTrack/blob/main/Supporting%20Documents/UI%20Mockup.pdf)
+4. [Data Dictionary](https://github.com/ChesterChiow/ChompTrack/blob/main/Supporting%20Documents/Data%20Dictionary.pdf)
+5. [Live Demo Presentation Slides](https://github.com/ChesterChiow/ChompTrack/blob/main/Supporting%20Documents/Live%20Demonstration%20Slides.pdf)
+6. [Pydoc](https://github.com/ChesterChiow/ChompTrack/tree/main/pydoc)
+7. [Test Cases and Testing Results](https://github.com/ChesterChiow/ChompTrack/blob/main/Supporting%20Documents/Test%20Cases%20and%20Testing%20Results.pdf)
 
 </details>
 
@@ -39,12 +36,12 @@ ChompTrack is your one-stop meal planner website, designed to make healthy eatin
 <summary>Diagrams</summary>
 <br>
 
-1. [Use Case Diagram](https://github.com/softwarelab3/2006-SCS2-44/blob/main/Lab5/Diagrams/Use%20Case%20Diagram.jpg)
-2. [Architecture Diagram](https://github.com/softwarelab3/2006-SCS2-44/blob/main/Lab5/Diagrams/System%20Architecture.jpg)
-3. [Class Diagram](https://github.com/softwarelab3/2006-SCS2-44/blob/main/Lab5/Diagrams/Class%20Diagram.jpg)
-4. [Sequence Diagrams](https://github.com/softwarelab3/2006-SCS2-44/tree/main/Lab5/Diagrams/Sequence%20Diagrams)
-5. [Dialog Map](https://github.com/softwarelab3/2006-SCS2-44/blob/main/Lab5/Diagrams/Dialog%20Map.jpg)
-6. [Key Boundary and Control Class Diagram](https://github.com/softwarelab3/2006-SCS2-44/blob/main/Lab5/Diagrams/Key%20Boundary%20and%20Control%20Class%20Diagram.jpg)
+1. [Use Case Diagram](https://github.com/ChesterChiow/ChompTrack/blob/main/Supporting%20Documents/Use%20Case%20Model/Use%20Case%20Diagram.jpg)
+2. [Architecture Diagram](https://github.com/ChesterChiow/ChompTrack/blob/main/Diagrams/System%20Architecture.jpg)
+3. [Class Diagram](https://github.com/ChesterChiow/ChompTrack/blob/main/Diagrams/Class%20Diagram.jpg)
+4. [Sequence Diagrams](https://github.com/ChesterChiow/ChompTrack/tree/main/Diagrams/Sequence%20Diagrams)
+5. [Dialog Map](https://github.com/ChesterChiow/ChompTrack/blob/main/Diagrams/Dialog%20Map.jpg)
+6. [Key Boundary and Control Class Diagram](https://github.com/ChesterChiow/ChompTrack/blob/main/Diagrams/Key%20Boundary%20and%20Control%20Class%20Diagram.jpg)
 
 </details>
 
@@ -116,7 +113,7 @@ This project provided a comprehensive experience in creating a practical, user-c
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/yourusername/2006-SCS2-44.git
+   git clone https://github.com/yourUsername/ChompTrack.git
    cd 2006-SCS2-44/ChompTrack
    ```
 
