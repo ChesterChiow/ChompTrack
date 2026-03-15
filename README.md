@@ -117,10 +117,11 @@ This project provided a comprehensive experience in creating a practical, user-c
    cd 2006-SCS2-44/ChompTrack
    ```
 
-2. **Create a Virtual Environment:**
+2. **Create a Virtual Environment and install dependencies:**
    ```bash
    python3 -m venv venv
    source venv/bin/activate
+   python -m pip install -r requirements.txt
    ```
 
 3. **Install & Setup Database (MySQL Workbench):**
