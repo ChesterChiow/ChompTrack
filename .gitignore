@@ -1,0 +1,59 @@
+# Virtual Environment
+.venv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class  
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Installer / package directories
+build/
+dist/
+*.egg-info/
+
+# Python packaging
+pip-wheel-metadata/
+
+# Distribution / coverage
+.coverage
+.pytest_cache/
+htmlcov/
+
+# Environments
+env/
+venv/
+ENV/
+env.bak/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Jupyter
+.ipynb_checkpoints
+
+# Pyright / Mypy
+.mypy_cache/
+typecheck/
+
+# Sensitive files
+.env
+*.env
+server/DatabaseCtrl/credentials.py
+
+# Database files
+*.sql
+
+# Static & node
+node_modules/
+npm-debug.log
+yarn-error.log
